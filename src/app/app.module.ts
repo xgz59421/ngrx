@@ -12,6 +12,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { CounterEffects } from './store/effects/counter.effects';
 import { TodoComponent } from './pages/todo/todo.component';
 import { TodoEntityComponent } from './pages/todo-entity/todo-entity.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TodoEntityComponent } from './pages/todo-entity/todo-entity.component';
     AppRoutingModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([CounterEffects])
+    EffectsModule.forRoot([CounterEffects]),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

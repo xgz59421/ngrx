@@ -36,7 +36,7 @@ export const reducer = createReducer(
       title: action.title
     },
     state)),
-    on(deleteTodo, (state, action) =>adapter.removeOne(action.id, state))
+  on(deleteTodo, (state, action) =>adapter.removeOne(action.id, state))
   // on(addTodo, (state, action)=>({
   //   ...state,
   //   todos: [
