@@ -3,7 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { fromEvent, Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { AppState } from 'src/app/store';
-import { addEntityTodo } from 'src/app/store/actions/todo-entity.actions';
+import { addEntityTodo, deleteEntityTodo } from 'src/app/store/actions/todo-entity.actions';
 import { EntityTodo } from 'src/app/store/reducers/todo-entity.reducer';
 import { selectEntityTodos } from 'src/app/store/selectors/todo-entity.selectors';
 
@@ -13,7 +13,7 @@ import { selectEntityTodos } from 'src/app/store/selectors/todo-entity.selectors
   styles: [
   ]
 })
-export class TodoEntityComponent implements AfterViewInit {
+export class TodoEntityComponent{
 
   @ViewChild('AddTodoInput') AddTodoInput!:ElementRef
   todos: Observable<EntityTodo[]>
@@ -21,25 +21,15 @@ export class TodoEntityComponent implements AfterViewInit {
   constructor(private store: Store<AppState>) {
     this.todos = this.store.pipe(select(selectEntityTodos))
   }
-  ngAfterViewInit() {
-    // fromEvent<KeyboardEvent>(this.AddTodoInput.nativeElement,'keyup')
-    //   .pipe(
-    //     filter(event=> event.key==='Enter'),
-    //     map(event=>(<HTMLInputElement>event.target).value),
-    //     map(title=>title.trim()),
-    //     filter(title=>title !== '')
-    //   )
-    // // .subscribe(console.log)
-    // .subscribe(title=>{
-    //   this.store.dispatch(addEntityTodo({title}));
-    //   this.AddTodoInput.nativeElement.value = ''
-    // })
-  }
 
   addTodo(){
     console.log(this.todoitem);
     this.store.dispatch(addEntityTodo({title: this.todoitem}));
     this.todoitem = ''
+  }
+  deleteTodo(id: string){ 
+    console.log(id);
+    this.store.dispatch(deleteEntityTodo({id}))
   }
   changeTodo(){
     // console.log(this.todoitem);
