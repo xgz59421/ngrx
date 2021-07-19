@@ -10,11 +10,15 @@ import { environment } from '../environments/environment';
 import { CounterComponent } from './pages/counter/counter.component';
 import { EffectsModule } from '@ngrx/effects';
 import { CounterEffects } from './store/effects/counter.effects';
+import { TodoComponent } from './pages/todo/todo.component';
+import { TodoEntityComponent } from './pages/todo-entity/todo-entity.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CounterComponent
+    CounterComponent,
+    TodoComponent,
+    TodoEntityComponent
   ],
   imports: [
     BrowserModule,

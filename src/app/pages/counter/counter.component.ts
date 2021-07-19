@@ -20,8 +20,8 @@ export class CounterComponent  {
   increment_async() {
     this.store.dispatch(increment_async())
   }
-  increment(payload: any) {
-    this.store.dispatch(increment(payload))
+  increment(count:number) {
+    this.store.dispatch(increment({count}))
   }
   decrement() {
     this.store.dispatch(decrement())
