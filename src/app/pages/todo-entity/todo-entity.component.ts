@@ -15,7 +15,7 @@ import { selectEntityTodos } from 'src/app/store/selectors/todo-entity.selectors
 })
 export class TodoEntityComponent{
 
-  @ViewChild('AddTodoInput') AddTodoInput!:ElementRef
+  @ViewChild('ul') ul!:ElementRef
   todos: Observable<EntityTodo[]>
   public todoitem = "";
   constructor(private store: Store<AppState>) {
@@ -29,7 +29,20 @@ export class TodoEntityComponent{
   }
   deleteTodo(id: string){ 
     console.log(id);
-    this.store.dispatch(deleteEntityTodo({id}))
+    let _children = this.ul.nativeElement.children;
+    for (const elements of _children) {
+      // console.log(elements.children[0].value);
+      // console.log(elements.children[0].checked);
+      if (elements.children[0].checked && id === elements.children[0].value) {
+        this.store.dispatch(deleteEntityTodo({id}))
+      }
+    }
+  }
+  onCheckbox(event: Event){
+    // const target = event.target as HTMLInputElement
+    // const checked = target.checked
+    // const value = target.value
+    // console.log(checked);
   }
   changeTodo(){
     // console.log(this.todoitem);
